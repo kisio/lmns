@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
 <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 ">
 
@@ -39,6 +39,7 @@
             @if(count($payments) > 0)
                 <ul class="list-disc pl-4 mb-4">
                     @foreach($payments as $payment)
+                        <li>{{$payment->customer_id}}</li>
                         <li>{{ $payment->transaction_code }}</li>
                     @endforeach
                 </ul>
@@ -48,4 +49,4 @@
         @else
             <p class="text-gray-500">Payments not available.</p>
         @endif
-</div>
+</div> --}}
