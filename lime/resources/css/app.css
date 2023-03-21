@@ -1,3 +1,3 @@
-body{
-    background-color: lime;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -12,12 +12,22 @@ class HomeController extends Controller
 {
     //
     public function index(Request $request){
-        // home view
-        return view('dashboard');
+        // Get all the records from the 'Customers' table
+        
+        $customers = Customers::get();
+        // Get all the records from the 'Tickets' table
+        $payments = Payments::get();
+    
+        // Get all the records from the 'Payments' table
+        $tickets = Tickets::get();
+    
+        // Pass the records to the 'dashboard' view
+        return view('dashboard',compact('customers','payments','tickets'));
     }
+    
 
-    public function search(Request $request)
-    {
+ public function search(Request $request)
+     {
         $query = $request->input('query');
 
         $customers = Customers::where('first_name', 'LIKE', "%$query%")
@@ -35,8 +45,8 @@ class HomeController extends Controller
             ->orWhere('account_number', 'LIKE', "%$query%")
             ->get();
 
-            return view('search', compact('customers', 'tickets', 'payments'));
-    }
+        return view('search', compact('customers', 'tickets', 'payments'));
+     }
 
 }
 // laravel index view controller?
