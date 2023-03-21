@@ -5,14 +5,15 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                    <a href="{{ route('home') }}">
+                        <span class="text-white font-bold text-xl">Limesol</span>
+
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('search')" :active="request()->routeIs('search')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
@@ -29,10 +30,30 @@
                             </div>
                         </div>
                     </form>
+                    @guest
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <ul class="flex items-center space-x-8">
+                        <li>
+                            <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-white hover:bg-gray-100">
+                                {{ __('Login') }}
+                            </a>
+                        </li> <li>
+                            <a href="{{ route('register') }}" class="block px-4 py-2 text-sm text-white hover:bg-gray-100">
+                                {{ __('register') }}
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
+                    @endguest
+                    @if (Auth::check())
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->email }}</div>
+                            
+                        
+                            <div>{{ Auth::user()->name }}</div>
+                       
+
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -59,6 +80,8 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                @endif
+                
             </div>
 
             <!-- Hamburger -->
@@ -82,6 +105,8 @@
         </div>
 
         <!-- Responsive Settings Options -->
+        @if (Auth::check())
+
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
@@ -105,5 +130,6 @@
                 </form>
             </div>
         </div>
+    @endif
     </div>
 </nav>

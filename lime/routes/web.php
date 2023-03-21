@@ -14,8 +14,8 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/search', [HomeController::class, 'search'])->name('search')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

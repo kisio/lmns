@@ -28,7 +28,10 @@
             @endif
 
             <!-- Page Content -->
-            @yield('content')
+           
+                @yield('content')
+            
+            
            >
         </div>
     </body>
